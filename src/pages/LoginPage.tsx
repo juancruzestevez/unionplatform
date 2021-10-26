@@ -1,5 +1,5 @@
-import React from "react";
-import { Form } from "antd";
+import React, { useState } from "react";
+import { Form, message } from "antd";
 import styled from "styled-components/macro";
 import Input from "../components/Input";
 import PageContainer from "../components/PageContainer";
@@ -8,15 +8,35 @@ import Button from "../components/Button";
 import { useHistory } from "react-router-dom";
 import RoutesEnum from "../shared/RoutesEnum";
 
+interface FormValues {
+  email: string;
+  password: string;
+}
+
 const LoginPage: React.FC = () => {
   const history = useHistory();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const submit = async (formValues: FormValues) => {
+    const closeLoading = message.loading("Ingresando");
+    try {
+      setIsSubmitting(true);
+      await new Promise((r) => setTimeout(r, 2000));
+      history.push(RoutesEnum.HOME);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsSubmitting(false);
+      closeLoading();
+    }
+  };
 
   return (
     <PageContainer>
       <SignUpContainer>
         <ContainerDiv>
           <h1>Login</h1>
-          <Form>
+          <Form onFinish={submit}>
             <Form.Item
               name="email"
               rules={[{ required: true, message: "Ingresa tu email" }]}
@@ -29,7 +49,7 @@ const LoginPage: React.FC = () => {
             >
               <Input placeholder="Contraseña" type="password" />
             </Form.Item>
-            <Button>Ingresar &gt;</Button>
+            <Button disabled={isSubmitting}>Ingresar &gt;</Button>
           </Form>
           <BottomLinks>
             <PageLink onClick={() => history.push(RoutesEnum.SIGNUP)}>
