@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
 import MainMenu from "./MainMenu";
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, LeftOutlined } from "@ant-design/icons";
 
 interface PageContainerProps {
   showBackButton?: boolean;
@@ -23,7 +23,9 @@ const PageContainer: React.FC<PageContainerProps> = ({
     <>
       <Container isMenuVisible={isMenuVisible}>
         {showBackButton && history.length && (
-          <BackButton onClick={() => history.goBack()}>←</BackButton>
+          <BackButton onClick={() => history.goBack()}>
+            <LeftOutlined style={{ fontSize: 28 }} />
+          </BackButton>
         )}
         {showHeader && (
           <HeaderContainer>
