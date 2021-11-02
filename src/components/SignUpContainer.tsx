@@ -19,14 +19,14 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 30px;
 `;
 
 const Header = styled.div`
-  height: 40%;
+  height: 25%;
   display: flex;
   align-items: flex-end;
-  padding: 20px 0;
+  margin-bottom: 46px;
 `;
 const Content = styled.div`
   flex-grow: 1;
@@ -35,7 +35,7 @@ const Content = styled.div`
 
 const Logo = styled.img`
   width: auto;
-  height: 150px;
+  height: 114px;
 `;
 
 export default SignUpContainer;

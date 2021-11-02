@@ -2,3 +2,10 @@
 @import "fonts";
 @import "generic/boxSizing";
 @import "generic/remSize";
+
+.ant-form-item {
+  margin-bottom: 18px !important;
+}
+.form--small .ant-form-item {
+  margin-bottom: 12px !important;
+}

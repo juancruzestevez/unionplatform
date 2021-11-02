@@ -49,7 +49,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
 const Container = styled.div<{ isMenuVisible: boolean }>`
   width: 100%;
   min-height: 100vh;
-  background-color: #ddd;
+  background-color: #f9faff;
   position: relative;
   transform: translateX(${(props) => (props.isMenuVisible ? "258px" : 0)});
   transition: transform 0.5s ease 0s;

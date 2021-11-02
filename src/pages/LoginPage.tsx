@@ -35,7 +35,6 @@ const LoginPage: React.FC = () => {
     <PageContainer>
       <SignUpContainer>
         <ContainerDiv>
-          <h1>Login</h1>
           <Form onFinish={submit}>
             <Form.Item
               name="email"
@@ -49,16 +48,17 @@ const LoginPage: React.FC = () => {
             >
               <Input placeholder="Contraseña" type="password" />
             </Form.Item>
-            <Button disabled={isSubmitting}>Ingresar &gt;</Button>
-          </Form>
-          <BottomLinks>
-            <PageLink onClick={() => history.push(RoutesEnum.SIGNUP)}>
-              Crear cuenta afiliada
-            </PageLink>
             <PageLink onClick={() => history.push(RoutesEnum.FORGOT_PASSWORD)}>
               Olvidé mi contraseña
             </PageLink>
-          </BottomLinks>
+
+            <Button submit disabled={isSubmitting} style={{ marginBottom: 22 }}>
+              Ingresar
+            </Button>
+            <Button light onClick={() => history.push(RoutesEnum.SIGNUP)}>
+              Crear cuenta
+            </Button>
+          </Form>
         </ContainerDiv>
       </SignUpContainer>
     </PageContainer>
@@ -69,12 +69,12 @@ const ContainerDiv = styled.div`
   width: 100%;
 `;
 
-const BottomLinks = styled.div``;
-
 const PageLink = styled.a`
   display: block;
-  text-align: center;
-  margin-top: 10px;
+  text-align: right;
+  margin-top: -15px;
+  margin-bottom: 16px;
+  color: #6d6ae7;
 `;
 
 export default LoginPage;

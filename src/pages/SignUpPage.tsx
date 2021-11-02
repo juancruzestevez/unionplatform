@@ -44,46 +44,45 @@ const SignUpPage: React.FC = () => {
     <PageContainer showBackButton>
       <SignUpContainer>
         <ContainerDiv>
-          <h1>Signup</h1>
-          <Form onFinish={submit}>
+          <Form onFinish={submit} className="form--small">
             <Form.Item
               name="name"
               rules={[{ required: true, message: "Ingresa tu nombre" }]}
             >
-              <Input placeholder="Nombre" />
+              <Input small placeholder="Nombre" />
             </Form.Item>
             <Form.Item
               name="lastname"
               rules={[{ required: true, message: "Ingresa tu apellido" }]}
             >
-              <Input placeholder="Apellido" />
+              <Input small placeholder="Apellido" />
             </Form.Item>
             <Form.Item
               name="email"
               rules={[{ required: true, message: "Ingresa tu email" }]}
             >
-              <Input placeholder="Email" type="email" />
+              <Input small placeholder="Email" type="email" />
             </Form.Item>
             <Form.Item
               name="password"
               rules={[{ required: true, message: "Ingresa tu contraseña" }]}
             >
-              <Input placeholder="Contraseña" type="password" />
+              <Input small placeholder="Contraseña" type="password" />
             </Form.Item>
             <Form.Item
               name="phone"
               rules={[{ required: true, message: "Ingrese teléfono" }]}
             >
-              <Input placeholder="Teléfono de contacto" type="number" />
+              <Input small placeholder="Teléfono de contacto" type="number" />
             </Form.Item>
             <Form.Item
               name="city"
               rules={[{ required: true, message: "Ingrese ciudad" }]}
             >
-              <Input placeholder="Ciudad" />
+              <Input small placeholder="Ciudad" />
             </Form.Item>
             <Form.Item name="affiliateNumber">
-              <Input placeholder="Nro Afiliado (si tienes uno)" />
+              <Input small placeholder="Nro Afiliado (si tienes uno)" />
             </Form.Item>
             <Button disabled={isSubmitting}>Afiliarme &gt;</Button>
           </Form>
