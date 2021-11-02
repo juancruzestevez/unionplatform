@@ -5,9 +5,11 @@ const RoutesEnum = {
   FORGOT_PASSWORD_EMAIL_SENT: "/forgot-password-email-sent",
   HOME: "/home",
   NEWS: "/news",
+  NEWS_ARTICLE: "/news/:id",
   PROFILE: "/profile",
   INCIDENTS: "/incidents",
-  NEW_INCIDENT: "/incidents/new",
+  INCIDENTS_VIEW: "/incidents/:id",
+  INCIDENTS_NEW: "/incidents/new",
   USEFUL_INFORMATION: "/useful-info",
 };
 export default RoutesEnum;

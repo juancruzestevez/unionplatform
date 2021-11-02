@@ -10,6 +10,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import NewsPage from "./pages/NewsPage";
 import ProfilePage from "./pages/ProfilePage";
 import "antd/dist/antd.css";
+import NewsArticlePage from "./pages/NewsArticlePage";
+import IncidentsPage from "./pages/IncidentsPage";
+import NewIncidentPage from "./pages/NewIncidentPage";
 
 function App() {
   return (
@@ -28,7 +31,14 @@ function App() {
       />
       <Route exact path={RoutesEnum.HOME} component={HomePage} />
       <Route exact path={RoutesEnum.NEWS} component={NewsPage} />
+      <Route exact path={RoutesEnum.NEWS_ARTICLE} component={NewsArticlePage} />
       <Route exact path={RoutesEnum.PROFILE} component={ProfilePage} />
+      <Route exact path={RoutesEnum.INCIDENTS} component={IncidentsPage} />
+      <Route
+        exact
+        path={RoutesEnum.INCIDENTS_NEW}
+        component={NewIncidentPage}
+      />
     </Router>
   );
 }
