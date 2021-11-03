@@ -32,7 +32,7 @@ const fakeIncidentsFetch = (): Promise<Incident[]> => {
   });
 };
 
-const useIncidents = () => {
+const useIncidents = ({ limit = null }: { limit: number | null }) => {
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 

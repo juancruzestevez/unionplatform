@@ -4,6 +4,9 @@ import styled from "styled-components/macro";
 import MainMenu from "./MainMenu";
 import { MenuOutlined, LeftOutlined } from "@ant-design/icons";
 
+import LogoSrc from "../assets/img/logo.png";
+import MenuIconSrc from "../assets/icons/menu-icon.png";
+
 interface PageContainerProps {
   showBackButton?: boolean;
   showHeader?: boolean;
@@ -31,13 +34,15 @@ const PageContainer: React.FC<PageContainerProps> = ({
           <HeaderContainer>
             {!showBackButton ? (
               <MenuToggleIcon onClick={() => setIsMenuVisible(!isMenuVisible)}>
-                <MenuOutlined />
+                <MenuIcon src={MenuIconSrc}></MenuIcon>
               </MenuToggleIcon>
             ) : (
               <div>a</div>
             )}
             <HeaderTitle>{title}</HeaderTitle>
-            <LogoContainer>Logo</LogoContainer>
+            <LogoContainer>
+              <Logo src={LogoSrc} alt="Logo" />
+            </LogoContainer>
           </HeaderContainer>
         )}
 
@@ -65,13 +70,28 @@ const BackButton = styled.div`
 `;
 
 const HeaderContainer = styled.div`
-  background: #ddd;
-  border: 1px solid #000;
+  background: #fff;
+  box-shadow: 0px 1px 11px -3px rgba(0, 0, 0, 0.2);
+  padding: 24px 30px;
+
   display: flex;
   justify-content: space-between;
 `;
+
+const Logo = styled.img`
+  width: auto;
+  height: 32px;
+`;
+
+const MenuIcon = styled.img`
+  width: 25px;
+  height: auto;
+`;
+
 const HeaderTitle = styled.h1``;
-const MenuToggleIcon = styled.div``;
+const MenuToggleIcon = styled.div`
+  font-size: 20px;
+`;
 const LogoContainer = styled.div``;
 
 export default PageContainer;

@@ -11,5 +11,6 @@ const RoutesEnum = {
   INCIDENTS_VIEW: "/incidents/:id",
   INCIDENTS_NEW: "/incidents/new",
   USEFUL_INFORMATION: "/useful-info",
+  USEFUL_INFORMATION_VIEW: "/useful-info/:id",
 };
 export default RoutesEnum;

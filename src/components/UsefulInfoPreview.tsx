@@ -1,41 +1,37 @@
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import moment from "moment";
-import { Incident } from "../shared/Incident";
 import RoutesEnum from "../shared/RoutesEnum";
 import Button from "./Button";
+import { UsefulInfo } from "../shared/UsefulInfo";
 
-interface IncidentPreviewProps {
-  incident: Incident;
+interface UsefulInfoPreviewProps {
+  usefulInfo: UsefulInfo;
 }
 
-const IncidentPreview: React.FC<IncidentPreviewProps> = ({ incident }) => {
+const UsefulInfoPreview: React.FC<UsefulInfoPreviewProps> = ({
+  usefulInfo,
+}) => {
   const history = useHistory();
 
-  const incidentRoute = RoutesEnum.INCIDENTS_VIEW.replace(
+  const usefulInfoRoute = RoutesEnum.USEFUL_INFORMATION_VIEW.replace(
     ":id",
-    incident.id.toString()
+    usefulInfo.id.toString()
   );
 
   const onClick = (e) => {
     e.preventDefault();
-    history.push(incidentRoute);
+    history.push(usefulInfoRoute);
   };
 
   return (
     <Container>
-      <Link href={incidentRoute} onClick={onClick}>
+      <Link href={usefulInfoRoute} onClick={onClick}>
         <Info>
-          <Title>Incidente #{incident.id}</Title>
-          <Description>
-            {moment(incident.date).format("DD/MM/YYYY")}
-            <br />
-            {incident.situation}
-          </Description>
+          <Title>{usefulInfo.title}</Title>
+          <Description>{usefulInfo.description}</Description>
         </Info>
-        <Actions>
-          <Button>Ver detalle</Button>
-        </Actions>
+        <MoreLink>See more</MoreLink>
       </Link>
     </Container>
   );
@@ -48,11 +44,7 @@ const Container = styled.div`
   padding: 12px 16px;
 `;
 
-const Link = styled.a`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+const Link = styled.a``;
 
 const Info = styled.div``;
 
@@ -61,6 +53,7 @@ const Title = styled.h3`
   font-weight: 500;
   font-family: Roboto;
   margin-bottom: 2px;
+  margin-top: 0;
 `;
 
 const Description = styled.p`
@@ -71,6 +64,6 @@ const Description = styled.p`
   color: #7e7e7e;
 `;
 
-const Actions = styled.div``;
+const MoreLink = styled.span``;
 
-export default IncidentPreview;
+export default UsefulInfoPreview;

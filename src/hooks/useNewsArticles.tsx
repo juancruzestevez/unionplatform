@@ -8,13 +8,22 @@ const fakeNewsArticlesFetch = (): Promise<NewsArticle[]> => {
         {
           id: "1",
           title: "First article",
-          description: "First article description",
+          description:
+            "First article description First article description First article description First article ",
           imageUrl: "https://google.com",
         },
         {
           id: "2",
           title: "Second article",
-          description: "Second article description",
+          description:
+            "Second article description Second article description Second article description ",
+          imageUrl: "https://google.com",
+        },
+        {
+          id: "3",
+          title: "Third article",
+          description:
+            "Third article description Third article description Third article description ",
           imageUrl: "https://google.com",
         },
       ]);
@@ -22,7 +31,7 @@ const fakeNewsArticlesFetch = (): Promise<NewsArticle[]> => {
   });
 };
 
-const useNewsArticles = () => {
+const useNewsArticles = ({ limit = null }: { limit?: number | null }) => {
   const [newsArticles, setNewsArticles] = useState<NewsArticle[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 

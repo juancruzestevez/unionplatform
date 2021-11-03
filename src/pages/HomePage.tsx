@@ -1,11 +1,67 @@
+import { Spin } from "antd";
 import React from "react";
+import styled from "styled-components";
+import ContentContainer from "../components/ContentContainer";
+import IncidentPreview from "../components/IncidentPreview";
+import NewsArticlePreview from "../components/NewsArticlePreview";
 import PageContainer from "../components/PageContainer";
+import UsefulInfoPreview from "../components/UsefulInfoPreview";
+import useIncidents from "../hooks/useIncidents";
+import useNewsArticles from "../hooks/useNewsArticles";
+import useUsefulInfo from "../hooks/useUsefulInfo";
 
 const HomePage: React.FC = () => {
+  const { newsArticles, isLoading: isLoadingNews } = useNewsArticles({
+    limit: 3,
+  });
+
+  const { incidents, isLoading: isLoadingIncidents } = useIncidents({
+    limit: 3,
+  });
+
+  const { usefulInfo, isLoading: isLoadingUsefulInfo } = useUsefulInfo({
+    limit: 3,
+  });
+
   return (
     <PageContainer showHeader>
-      <h1>asdasd</h1>
+      <ContentContainer>
+        <Title>Noticias</Title>
+        {!isLoadingNews ? (
+          newsArticles.map((newsArticle, index) => (
+            <NewsArticlePreview
+              featured={index === 0}
+              newsArticle={newsArticle}
+            />
+          ))
+        ) : (
+          <Spin />
+        )}
+
+        <Title>Incidentes</Title>
+        {!isLoadingIncidents ? (
+          incidents.map((incident) => <IncidentPreview incident={incident} />)
+        ) : (
+          <Spin />
+        )}
+
+        <Title>Información Útil</Title>
+        {!isLoadingUsefulInfo ? (
+          usefulInfo.map((usefulInfo) => (
+            <UsefulInfoPreview usefulInfo={usefulInfo} />
+          ))
+        ) : (
+          <Spin />
+        )}
+      </ContentContainer>
     </PageContainer>
   );
 };
+
+const Title = styled.h2`
+  font-size: 17px;
+  font-weight: 500;
+  font-family: Roboto;
+  margin-bottom: 10px;
+`;
 export default HomePage;
