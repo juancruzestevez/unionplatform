@@ -5,6 +5,7 @@ import PageContainer from "../components/PageContainer";
 import { UploadOutlined } from "@ant-design/icons";
 import ContentContainer from "../components/ContentContainer";
 import Button from "../components/Button";
+import PageTitle from "../components/PageTitle";
 
 const NewIncidentPage: React.FC = () => {
   const normFile = (e: any) => {
@@ -16,8 +17,9 @@ const NewIncidentPage: React.FC = () => {
   };
 
   return (
-    <PageContainer showHeader title="Report incidents">
+    <PageContainer showHeader>
       <ContentContainer>
+        <PageTitle>Nuevo incidente</PageTitle>
         <Form>
           <Form.Item
             name="situation"

@@ -7,6 +7,7 @@ import PageContainer from "../components/PageContainer";
 import useIncidents from "../hooks/useIncidents";
 import RoutesEnum from "../shared/RoutesEnum";
 import Button from "../components/Button";
+import PageTitle from "../components/PageTitle";
 import styled from "styled-components";
 
 const IncidentsPage: React.FC = () => {
@@ -17,6 +18,7 @@ const IncidentsPage: React.FC = () => {
     <PageContainer showHeader>
       <ContentContainer>
         <ButtonContainer>
+          <PageTitle noMargin>Incidentes</PageTitle>
           <StyledButton onClick={() => history.push(RoutesEnum.INCIDENTS_NEW)}>
             Nuevo incidente
           </StyledButton>
@@ -39,7 +41,8 @@ const IncidentsPage: React.FC = () => {
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 15px;
 `;
 
