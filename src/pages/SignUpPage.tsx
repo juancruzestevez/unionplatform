@@ -84,7 +84,9 @@ const SignUpPage: React.FC = () => {
             <Form.Item name="affiliateNumber">
               <Input small placeholder="Nro Afiliado (si tienes uno)" />
             </Form.Item>
-            <Button disabled={isSubmitting}>Afiliarme &gt;</Button>
+            <Button submit disabled={isSubmitting}>
+              Afiliarme &gt;
+            </Button>
           </Form>
         </ContainerDiv>
       </SignUpContainer>

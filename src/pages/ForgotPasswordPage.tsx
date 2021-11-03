@@ -39,7 +39,7 @@ const ForgotPasswordPage: React.FC = () => {
               <Input placeholder="Email" type="email" />
             </Form.Item>
 
-            <Button>Resetear Constraseña &gt;</Button>
+            <Button submit>Resetear Constraseña &gt;</Button>
           </Form>
         </ContainerDiv>
       </SignUpContainer>
