@@ -8,8 +8,8 @@ const RoutesEnum = {
   NEWS_ARTICLE: "/news/:id",
   PROFILE: "/profile",
   INCIDENTS: "/incidents",
-  INCIDENTS_VIEW: "/incidents/:id",
   INCIDENTS_NEW: "/incidents/new",
+  INCIDENTS_VIEW: "/incidents/detail/:id",
   USEFUL_INFORMATION: "/useful-info",
   USEFUL_INFORMATION_VIEW: "/useful-info/:id",
 };
