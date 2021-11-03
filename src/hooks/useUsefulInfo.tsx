@@ -24,7 +24,7 @@ const fakeUsefulInfoFetch = (): Promise<UsefulInfo[]> => {
   });
 };
 
-const useUsefulInfo = ({ limit = null }: { limit: number | null }) => {
+const useUsefulInfo = ({ limit = null }: { limit?: number | null }) => {
   const [usefulInfo, setUsefulInfo] = useState<UsefulInfo[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 

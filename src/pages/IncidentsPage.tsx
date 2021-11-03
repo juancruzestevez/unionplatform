@@ -1,32 +1,49 @@
-import { Button, Spin } from "antd";
+import { Spin } from "antd";
 import React from "react";
 import { useHistory } from "react-router";
+import ContentContainer from "../components/ContentContainer";
 import IncidentPreview from "../components/IncidentPreview";
 import PageContainer from "../components/PageContainer";
 import useIncidents from "../hooks/useIncidents";
 import RoutesEnum from "../shared/RoutesEnum";
+import Button from "../components/Button";
+import styled from "styled-components";
 
 const IncidentsPage: React.FC = () => {
-  const { incidents, isLoading } = useIncidents();
+  const { incidents, isLoading } = useIncidents({});
   const history = useHistory();
 
   return (
     <PageContainer showHeader>
-      <Button onClick={() => history.push(RoutesEnum.INCIDENTS_NEW)}>
-        Nuevo incidente
-      </Button>
-      {!isLoading ? (
-        <ul>
-          {incidents.map((incident) => (
-            <li key={incident.id}>
-              <IncidentPreview incident={incident} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <Spin />
-      )}
+      <ContentContainer>
+        <ButtonContainer>
+          <StyledButton onClick={() => history.push(RoutesEnum.INCIDENTS_NEW)}>
+            Nuevo incidente
+          </StyledButton>
+        </ButtonContainer>
+        {!isLoading ? (
+          <ul>
+            {incidents.map((incident) => (
+              <li key={incident.id}>
+                <IncidentPreview incident={incident} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <Spin />
+        )}
+      </ContentContainer>
     </PageContainer>
   );
 };
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+`;
+
+const StyledButton = styled(Button)`
+  width: auto;
+`;
 export default IncidentsPage;

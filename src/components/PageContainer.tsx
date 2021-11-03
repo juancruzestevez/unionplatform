@@ -76,6 +76,7 @@ const HeaderContainer = styled.div`
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const Logo = styled.img`
@@ -88,7 +89,11 @@ const MenuIcon = styled.img`
   height: auto;
 `;
 
-const HeaderTitle = styled.h1``;
+const HeaderTitle = styled.h1`
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+`;
 const MenuToggleIcon = styled.div`
   font-size: 20px;
 `;

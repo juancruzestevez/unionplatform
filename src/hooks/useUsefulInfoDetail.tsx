@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { NewsArticle } from "../shared/NewsArticle";
+import { UsefulInfo } from "..//shared/UsefulInfo";
 
-const fakeNewsArticleFetch = (): Promise<NewsArticle> => {
+const fakeUsefulInfoFetch = (): Promise<UsefulInfo> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
-        id: "1",
+        id: 1,
+        date: new Date(),
         title: "First article",
         description: "First article description",
-        imageUrl: "https://google.com",
         content:
           "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatum aspernatur eius. Ut et vero veritatis ad officiis nostrum magnam fugit neque, possimus consequatur voluptates eaque non atque perspiciatis reprehenderit?</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatum aspernatur eius. Ut et vero veritatis ad officiis nostrum magnam fugit neque, possimus consequatur voluptates eaque non atque perspiciatis reprehenderit?</p>",
       });
@@ -16,17 +16,17 @@ const fakeNewsArticleFetch = (): Promise<NewsArticle> => {
   });
 };
 
-const useNewsArticle = (id: string) => {
-  const [article, setArticle] = useState<NewsArticle | null>(null);
+const useUsefulInfoDetail = (id: string) => {
+  const [usefulInfo, setUsefulInfo] = useState<UsefulInfo | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchArticle = async () => {
+  const fetchUsefulInfo = async () => {
     try {
       setIsLoading(true);
       //   const response = await fetch(`/api/news/${id}`);
       //   const json = await response.json();
-      const json = await fakeNewsArticleFetch();
-      setArticle(json);
+      const json = await fakeUsefulInfoFetch();
+      setUsefulInfo(json);
     } catch (e) {
       console.log(e);
     } finally {
@@ -35,9 +35,9 @@ const useNewsArticle = (id: string) => {
   };
 
   useEffect(() => {
-    fetchArticle();
+    fetchUsefulInfo();
   }, [id]);
 
-  return { article, isLoading };
+  return { usefulInfo, isLoading };
 };
-export default useNewsArticle;
+export default useUsefulInfoDetail;

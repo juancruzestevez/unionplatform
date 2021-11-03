@@ -13,6 +13,8 @@ import "antd/dist/antd.css";
 import NewsArticlePage from "./pages/NewsArticlePage";
 import IncidentsPage from "./pages/IncidentsPage";
 import NewIncidentPage from "./pages/NewIncidentPage";
+import UsefulInformationPage from "./pages/UsefulInformationPage";
+import UsefulInfoDetailPage from "./pages/UsefulInfoDetailPage";
 
 function App() {
   return (
@@ -38,6 +40,21 @@ function App() {
         exact
         path={RoutesEnum.INCIDENTS_NEW}
         component={NewIncidentPage}
+      />
+      <Route
+        exact
+        path={RoutesEnum.INCIDENTS_VIEW}
+        component={NewIncidentPage}
+      />
+      <Route
+        exact
+        path={RoutesEnum.USEFUL_INFORMATION}
+        component={UsefulInformationPage}
+      />
+      <Route
+        exact
+        path={RoutesEnum.USEFUL_INFORMATION_VIEW}
+        component={UsefulInfoDetailPage}
       />
     </Router>
   );
