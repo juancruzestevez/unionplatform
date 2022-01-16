@@ -7,6 +7,9 @@ import SignUpContainer from "../components/SignUpContainer";
 import Button from "../components/Button";
 import { useHistory } from "react-router-dom";
 import RoutesEnum from "../shared/RoutesEnum";
+import FetchService from "../shared/FetchService";
+import ApiEndpoints from "../shared/ApiEndpoints";
+import AuthService from "../shared/AuthService";
 
 interface FormValues {
   email: string;
@@ -21,10 +24,15 @@ const LoginPage: React.FC = () => {
     const closeLoading = message.loading("Ingresando");
     try {
       setIsSubmitting(true);
-      await new Promise((r) => setTimeout(r, 2000));
+      const { password, email } = formValues;
+      const { token } = await FetchService.request(ApiEndpoints.LOGIN, {
+        body: JSON.stringify({ email, password }),
+      });
+      AuthService.saveAuthToken(token);
       history.push(RoutesEnum.HOME);
     } catch (e) {
       console.log(e);
+      message.error(e.message || "Error al ingresar");
     } finally {
       setIsSubmitting(false);
       closeLoading();

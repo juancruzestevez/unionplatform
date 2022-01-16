@@ -7,6 +7,7 @@ import {
   InfoCircleOutlined,
   UserOutlined,
   MessageOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { useHistory, useLocation } from "react-router-dom";
 import RoutesEnum from "../shared/RoutesEnum";
@@ -82,6 +83,16 @@ const MainMenu: React.FC<MainMenuProps> = ({ isVisible }) => {
           onClick={() => goTo(RoutesEnum.PROFILE)}
         >
           Perfil
+        </Menu.Item>
+        <Menu.Item
+          key={"logout"}
+          icon={<LogoutOutlined />}
+          onClick={() => {
+            localStorage.removeItem("token");
+            goTo(RoutesEnum.LOGIN);
+          }}
+        >
+          Logout
         </Menu.Item>
       </StyledMenu>
     </Container>

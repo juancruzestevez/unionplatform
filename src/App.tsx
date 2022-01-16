@@ -15,6 +15,7 @@ import IncidentsPage from "./pages/IncidentsPage";
 import NewIncidentPage from "./pages/NewIncidentPage";
 import UsefulInformationPage from "./pages/UsefulInformationPage";
 import UsefulInfoDetailPage from "./pages/UsefulInfoDetailPage";
+import LoggedInRoute from "./components/LoggedInRoute";
 
 function App() {
   return (
@@ -31,27 +32,35 @@ function App() {
         path={RoutesEnum.FORGOT_PASSWORD_EMAIL_SENT}
         component={ForgotPasswordEmailSentPage}
       />
-      <Route exact path={RoutesEnum.HOME} component={HomePage} />
-      <Route exact path={RoutesEnum.NEWS} component={NewsPage} />
-      <Route exact path={RoutesEnum.NEWS_ARTICLE} component={NewsArticlePage} />
-      <Route exact path={RoutesEnum.PROFILE} component={ProfilePage} />
-      <Route exact path={RoutesEnum.INCIDENTS} component={IncidentsPage} />
-      <Route
+      <LoggedInRoute exact path={RoutesEnum.HOME} component={HomePage} />
+      <LoggedInRoute exact path={RoutesEnum.NEWS} component={NewsPage} />
+      <LoggedInRoute
+        exact
+        path={RoutesEnum.NEWS_ARTICLE}
+        component={NewsArticlePage}
+      />
+      <LoggedInRoute exact path={RoutesEnum.PROFILE} component={ProfilePage} />
+      <LoggedInRoute
+        exact
+        path={RoutesEnum.INCIDENTS}
+        component={IncidentsPage}
+      />
+      <LoggedInRoute
         exact
         path={RoutesEnum.INCIDENTS_NEW}
         component={NewIncidentPage}
       />
-      <Route
+      <LoggedInRoute
         exact
         path={RoutesEnum.INCIDENTS_VIEW}
         component={NewIncidentPage}
       />
-      <Route
+      <LoggedInRoute
         exact
         path={RoutesEnum.USEFUL_INFORMATION}
         component={UsefulInformationPage}
       />
-      <Route
+      <LoggedInRoute
         exact
         path={RoutesEnum.USEFUL_INFORMATION_VIEW}
         component={UsefulInfoDetailPage}
