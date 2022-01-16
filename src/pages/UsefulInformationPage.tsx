@@ -7,13 +7,13 @@ import { Spin } from "antd";
 import PageTitle from "../components/PageTitle";
 
 const UsefulInformationPage: React.FC = () => {
-  const { usefulInfo, isLoading } = useUsefulInfo({});
+  const { usefulInfo, isLoadingUsefulInfo } = useUsefulInfo();
 
   return (
     <PageContainer showHeader>
       <ContentContainer>
         <PageTitle>Información Útil</PageTitle>
-        {!isLoading ? (
+        {!isLoadingUsefulInfo ? (
           usefulInfo.map((usefulInfo) => (
             <UsefulInfoPreview usefulInfo={usefulInfo} />
           ))

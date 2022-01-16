@@ -1,8 +1,6 @@
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import moment from "moment";
 import RoutesEnum from "../shared/RoutesEnum";
-import Button from "./Button";
 import { UsefulInfo } from "../shared/UsefulInfo";
 
 interface UsefulInfoPreviewProps {
@@ -16,7 +14,7 @@ const UsefulInfoPreview: React.FC<UsefulInfoPreviewProps> = ({
 
   const usefulInfoRoute = RoutesEnum.USEFUL_INFORMATION_VIEW.replace(
     ":id",
-    usefulInfo.id.toString()
+    usefulInfo._id.toString()
   );
 
   const onClick = (e) => {
@@ -31,7 +29,7 @@ const UsefulInfoPreview: React.FC<UsefulInfoPreviewProps> = ({
           <Title>{usefulInfo.title}</Title>
           <Description>{usefulInfo.description}</Description>
         </Info>
-        <MoreLink>See more</MoreLink>
+        <MoreLink>Ver más</MoreLink>
       </Link>
     </Container>
   );

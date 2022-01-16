@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
     limit: 3,
   });
 
-  const { usefulInfo, isLoading: isLoadingUsefulInfo } = useUsefulInfo({
+  const { usefulInfo, isLoadingUsefulInfo } = useUsefulInfo({
     limit: 3,
   });
 

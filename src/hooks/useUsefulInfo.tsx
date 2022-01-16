@@ -1,55 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import ApiEndpoints from "../shared/ApiEndpoints";
+import FetchService from "../shared/FetchService";
 import { UsefulInfo } from "../shared/UsefulInfo";
 
-const fakeUsefulInfoFetch = (): Promise<UsefulInfo[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: 1,
-          date: new Date(),
-          title: "Useful Info 1",
-          description: "Description 1",
-          content: "",
-        },
-        {
-          id: 2,
-          date: new Date(),
-          title: "Useful Info 2",
-          description: "Description 2",
-          content: "",
-        },
-      ]);
-    }, 1000);
-  });
-};
+interface useUsefulInfoParams {
+  limit?: number;
+}
 
-const useUsefulInfo = ({ limit = null }: { limit?: number | null }) => {
+const useUsefulInfo = ({ limit = 0 }: useUsefulInfoParams) => {
+  const [isLoadingUsefulInfo, setIsLoadingUsefulInfo] = useState(true);
   const [usefulInfo, setUsefulInfo] = useState<UsefulInfo[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const fetchUsefulInfos = async () => {
-    try {
-      setIsLoading(true);
-      //   const response = await fetch("/api/news");
-      //   const json = await response.json();
-      const json = await fakeUsefulInfoFetch();
-      setUsefulInfo(json);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setIsLoading(false);
-    }
+  const fetchUsefulInfo = async () => {
+    setIsLoadingUsefulInfo(true);
+
+    const { usefulInfo } = await FetchService.request(
+      ApiEndpoints.USEFUL_INFO_LIST,
+      {
+        body: JSON.stringify({ limit }),
+      }
+    );
+    setUsefulInfo(usefulInfo);
+    setIsLoadingUsefulInfo(false);
   };
 
   useEffect(() => {
-    fetchUsefulInfos();
+    fetchUsefulInfo();
   }, []);
-
-  return {
-    usefulInfo,
-    isLoading,
-    fetchUsefulInfos,
-  };
+  return { isLoadingUsefulInfo, usefulInfo, fetchUsefulInfo };
 };
 export default useUsefulInfo;
