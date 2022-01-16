@@ -1,20 +1,7 @@
 import { useEffect, useState } from "react";
+import ApiEndpoints from "../shared/ApiEndpoints";
+import FetchService from "../shared/FetchService";
 import { NewsArticle } from "../shared/NewsArticle";
-
-const fakeNewsArticleFetch = (): Promise<NewsArticle> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        id: "1",
-        title: "First article",
-        description: "First article description",
-        imageUrl: "https://google.com",
-        content:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatum aspernatur eius. Ut et vero veritatis ad officiis nostrum magnam fugit neque, possimus consequatur voluptates eaque non atque perspiciatis reprehenderit?</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatum aspernatur eius. Ut et vero veritatis ad officiis nostrum magnam fugit neque, possimus consequatur voluptates eaque non atque perspiciatis reprehenderit?</p>",
-      });
-    }, 1000);
-  });
-};
 
 const useNewsArticle = (id: string) => {
   const [article, setArticle] = useState<NewsArticle | null>(null);
@@ -23,10 +10,10 @@ const useNewsArticle = (id: string) => {
   const fetchArticle = async () => {
     try {
       setIsLoading(true);
-      //   const response = await fetch(`/api/news/${id}`);
-      //   const json = await response.json();
-      const json = await fakeNewsArticleFetch();
-      setArticle(json);
+      const { news } = await FetchService.request(ApiEndpoints.NEWS_DETAIL, {
+        body: JSON.stringify({ newsId: id }),
+      });
+      setArticle(news);
     } catch (e) {
       console.log(e);
     } finally {

@@ -3,8 +3,6 @@ import { useParams } from "react-router";
 import PageContainer from "../components/PageContainer";
 import useNewsArticle from "../hooks/useNewsArticle";
 import ContentContainer from "../components/ContentContainer";
-
-import ExampleSrc from "../assets/img/example.jpg";
 import styled from "styled-components";
 
 interface NewsArticlePageUrlParams {
@@ -19,9 +17,9 @@ const NewsArticlePage = () => {
   return (
     <PageContainer showHeader>
       <ContentContainer>
-        <Image src={ExampleSrc}></Image>
         {!isLoading ? (
           <>
+            <Image src={article.thumbnail}></Image>
             <Title>{article.title}</Title>
             <div dangerouslySetInnerHTML={{ __html: article.content }}></div>
           </>

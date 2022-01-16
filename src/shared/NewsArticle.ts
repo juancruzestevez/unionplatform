@@ -1,7 +1,10 @@
+import { MongoId } from "./MongoId";
+
 export type NewsArticle = {
-  id: string;
+  _id: MongoId;
   title: string;
   description: string;
   content: string;
-  imageUrl: string;
+  thumbnail: string;
+  createdAt: Date;
 };

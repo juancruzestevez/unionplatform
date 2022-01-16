@@ -1,35 +1,7 @@
 import { useEffect, useState } from "react";
 import { NewsArticle } from "../shared/NewsArticle";
-
-const fakeNewsArticlesFetch = (): Promise<NewsArticle[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: "1",
-          title: "First article",
-          description:
-            "First article description First article description First article description First article ",
-          imageUrl: "https://google.com",
-        },
-        {
-          id: "2",
-          title: "Second article",
-          description:
-            "Second article description Second article description Second article description ",
-          imageUrl: "https://google.com",
-        },
-        {
-          id: "3",
-          title: "Third article",
-          description:
-            "Third article description Third article description Third article description ",
-          imageUrl: "https://google.com",
-        },
-      ]);
-    }, 1000);
-  });
-};
+import FetchService from "../shared/FetchService";
+import ApiEndpoints from "../shared/ApiEndpoints";
 
 const useNewsArticles = ({ limit = null }: { limit?: number | null }) => {
   const [newsArticles, setNewsArticles] = useState<NewsArticle[]>([]);
@@ -38,10 +10,8 @@ const useNewsArticles = ({ limit = null }: { limit?: number | null }) => {
   const fetchNewsArticles = async () => {
     try {
       setIsLoading(true);
-      //   const response = await fetch("/api/news");
-      //   const json = await response.json();
-      const json = await fakeNewsArticlesFetch();
-      setNewsArticles(json);
+      const { news } = await FetchService.request(ApiEndpoints.NEWS_LIST);
+      setNewsArticles(news);
     } catch (e) {
       console.log(e);
     } finally {

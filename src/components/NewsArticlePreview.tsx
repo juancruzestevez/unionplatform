@@ -2,7 +2,6 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import { NewsArticle } from "../shared/NewsArticle";
 import RoutesEnum from "../shared/RoutesEnum";
-import LogoSrc from "../assets/img/example.jpg";
 
 interface NewsArticlePreviewProps {
   newsArticle: NewsArticle;
@@ -15,7 +14,7 @@ const NewsArticlePreview: React.FC<NewsArticlePreviewProps> = ({
 }) => {
   const history = useHistory();
 
-  const articleRoute = RoutesEnum.NEWS_ARTICLE.replace(":id", newsArticle.id);
+  const articleRoute = RoutesEnum.NEWS_ARTICLE.replace(":id", newsArticle._id);
 
   const onClick = (e) => {
     e.preventDefault();
@@ -25,7 +24,7 @@ const NewsArticlePreview: React.FC<NewsArticlePreviewProps> = ({
   return (
     <Container>
       <Link featured={featured} href={articleRoute} onClick={onClick}>
-        <Image featured={featured} src={LogoSrc}></Image>
+        <Image featured={featured} src={newsArticle.thumbnail}></Image>
         <Info featured={featured}>
           <Title>{newsArticle.title}</Title>
           <Description>{newsArticle.description}</Description>

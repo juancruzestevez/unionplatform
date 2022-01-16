@@ -19,7 +19,7 @@ const NewsPage: React.FC = () => {
         {!isLoading ? (
           <ul>
             {newsArticles.map((newsArticle) => (
-              <li key={newsArticle.id}>
+              <li key={newsArticle._id}>
                 <NewsArticlePreview newsArticle={newsArticle} />
               </li>
             ))}
