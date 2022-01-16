@@ -14,7 +14,7 @@ const IncidentPreview: React.FC<IncidentPreviewProps> = ({ incident }) => {
 
   const incidentRoute = RoutesEnum.INCIDENTS_VIEW.replace(
     ":id",
-    incident.id.toString()
+    incident._id.toString()
   );
 
   const onClick = (e) => {
@@ -26,9 +26,9 @@ const IncidentPreview: React.FC<IncidentPreviewProps> = ({ incident }) => {
     <Container>
       <Link href={incidentRoute} onClick={onClick}>
         <Info>
-          <Title>Incidente #{incident.id}</Title>
+          <Title>Incidente asd</Title>
           <Description>
-            {moment(incident.date).format("DD/MM/YYYY")}
+            {moment(incident.createdAt).format("DD/MM/YYYY")}
             <br />
             {incident.situation}
           </Description>

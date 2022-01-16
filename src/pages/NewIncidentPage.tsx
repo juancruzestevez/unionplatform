@@ -1,13 +1,35 @@
-import { Button as AntButton, Form, Input, Select, Upload } from "antd";
+import {
+  Button as AntButton,
+  Form,
+  Input,
+  message,
+  Select,
+  Upload,
+} from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import React from "react";
+import React, { useState } from "react";
 import PageContainer from "../components/PageContainer";
 import { UploadOutlined } from "@ant-design/icons";
 import ContentContainer from "../components/ContentContainer";
 import Button from "../components/Button";
 import PageTitle from "../components/PageTitle";
+import FetchService from "../shared/FetchService";
+import ApiEndpoints from "../shared/ApiEndpoints";
+import { useHistory } from "react-router-dom";
+import RoutesEnum from "../shared/RoutesEnum";
+
+interface FormValues {
+  situation: string;
+  role: string;
+  place: string;
+  description: string;
+  image: string;
+}
 
 const NewIncidentPage: React.FC = () => {
+  const history = useHistory();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const normFile = (e: any) => {
     console.log("Upload event:", e);
     if (Array.isArray(e)) {
@@ -16,11 +38,38 @@ const NewIncidentPage: React.FC = () => {
     return e && e.fileList;
   };
 
+  const submit = async (formValues: FormValues) => {
+    const closeLoading = message.loading("Enviando incidente...");
+    try {
+      setIsSubmitting(true);
+      const { description, image, place, role, situation } = formValues;
+      await FetchService.request(ApiEndpoints.INCIDENT_ADD, {
+        body: JSON.stringify({
+          description,
+          image: "",
+          place,
+          role,
+          situation,
+        }),
+      });
+      setIsSubmitting(false);
+      closeLoading();
+      message.success("Incidente enviado!", 2000);
+      history.push(RoutesEnum.INCIDENTS);
+    } catch (e) {
+      console.log(e);
+      message.error(e.message || "Error al ingresar");
+    } finally {
+      setIsSubmitting(false);
+      closeLoading();
+    }
+  };
+
   return (
     <PageContainer showHeader>
       <ContentContainer>
         <PageTitle>Nuevo incidente</PageTitle>
-        <Form>
+        <Form onFinish={submit}>
           <Form.Item
             name="situation"
             label="Situación"
@@ -87,7 +136,7 @@ const NewIncidentPage: React.FC = () => {
             </Upload>
           </Form.Item>
 
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={isSubmitting}>
             Enviar
           </Button>
         </Form>
