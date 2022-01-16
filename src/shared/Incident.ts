@@ -1,6 +1,9 @@
+import { MongoId } from "./MongoId";
+
 export type Incident = {
-  id: number;
-  date: Date;
+  _id: MongoId;
+  createdAt: Date;
+
   situation: string;
   role: string;
   company: string;
