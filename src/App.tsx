@@ -16,6 +16,7 @@ import NewIncidentPage from "./pages/NewIncidentPage";
 import UsefulInformationPage from "./pages/UsefulInformationPage";
 import UsefulInfoDetailPage from "./pages/UsefulInfoDetailPage";
 import LoggedInRoute from "./components/LoggedInRoute";
+import ViewIncidentsPage from "./pages/ViewIncidentPage";
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
       <LoggedInRoute
         exact
         path={RoutesEnum.INCIDENTS_VIEW}
-        component={NewIncidentPage}
+        component={ViewIncidentsPage}
       />
       <LoggedInRoute
         exact

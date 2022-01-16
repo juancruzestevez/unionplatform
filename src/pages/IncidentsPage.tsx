@@ -26,7 +26,7 @@ const IncidentsPage: React.FC = () => {
         {!isLoading ? (
           <ul>
             {incidents.map((incident) => (
-              <li key={incident.id}>
+              <li key={incident._id}>
                 <IncidentPreview incident={incident} />
               </li>
             ))}
