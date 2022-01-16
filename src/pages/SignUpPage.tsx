@@ -7,10 +7,13 @@ import SignUpContainer from "../components/SignUpContainer";
 import Button from "../components/Button";
 import { useHistory } from "react-router-dom";
 import RoutesEnum from "../shared/RoutesEnum";
+import FetchService from "../shared/FetchService";
+import ApiEndpoints from "../shared/ApiEndpoints";
+import AuthService from "../shared/AuthService";
 
 interface FormValues {
   name: string;
-  lastname: string;
+  lastName: string;
   email: string;
   password: string;
   phone: string;
@@ -27,7 +30,12 @@ const SignUpPage: React.FC = () => {
     try {
       setIsSubmitting(true);
 
-      await new Promise((r) => setTimeout(r, 2000));
+      console.log("formValues", formValues);
+
+      const { token } = await FetchService.request(ApiEndpoints.SIGNUP, {
+        body: JSON.stringify(formValues),
+      });
+      AuthService.saveAuthToken(token);
 
       closeLoading();
       message.success("Su cuenta ha sido creada correctamente", 2);
@@ -52,7 +60,7 @@ const SignUpPage: React.FC = () => {
               <Input small placeholder="Nombre" />
             </Form.Item>
             <Form.Item
-              name="lastname"
+              name="lastName"
               rules={[{ required: true, message: "Ingresa tu apellido" }]}
             >
               <Input small placeholder="Apellido" />
