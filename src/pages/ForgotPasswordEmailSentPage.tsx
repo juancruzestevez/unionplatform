@@ -8,7 +8,9 @@ const ForgotPasswordEmailSentPage: React.FC = () => {
     <PageContainer showBackButton>
       <SignUpContainer>
         <ContainerDiv>
-          <h1>Se envio el email</h1>
+          <h1>
+            Se ha enviado un email con un link para resetear su contraseña.
+          </h1>
         </ContainerDiv>
       </SignUpContainer>
     </PageContainer>

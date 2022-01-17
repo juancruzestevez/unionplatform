@@ -40,7 +40,17 @@ const HomePage: React.FC = () => {
 
         <Title>Incidentes</Title>
         {!isLoadingIncidents ? (
-          incidents.map((incident) => <IncidentPreview incident={incident} />)
+          <>
+            {incidents.length ? (
+              incidents.map((incident) => (
+                <IncidentPreview incident={incident} />
+              ))
+            ) : (
+              <span style={{ display: "block", marginBottom: 30 }}>
+                No hay incidentes para mostrar
+              </span>
+            )}
+          </>
         ) : (
           <Spin />
         )}

@@ -3,7 +3,7 @@ import ApiEndpoints from "../shared/ApiEndpoints";
 import FetchService from "../shared/FetchService";
 import { Incident } from "../shared/Incident";
 
-const useIncidents = ({ limit = null }: { limit?: number | null }) => {
+const useIncidents = ({ limit = 0 }: { limit?: number | null }) => {
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -12,7 +12,7 @@ const useIncidents = ({ limit = null }: { limit?: number | null }) => {
       setIsLoading(true);
       const { incidents } = await FetchService.request(
         ApiEndpoints.INCIDENT_LIST,
-        {}
+        { body: JSON.stringify({ limit }) }
       );
       setIncidents(incidents);
     } catch (e) {

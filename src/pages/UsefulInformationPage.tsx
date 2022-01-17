@@ -7,7 +7,7 @@ import { Spin } from "antd";
 import PageTitle from "../components/PageTitle";
 
 const UsefulInformationPage: React.FC = () => {
-  const { usefulInfo, isLoadingUsefulInfo } = useUsefulInfo();
+  const { usefulInfo, isLoadingUsefulInfo } = useUsefulInfo({});
 
   return (
     <PageContainer showHeader>

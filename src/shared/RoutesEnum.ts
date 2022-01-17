@@ -12,7 +12,7 @@ const RoutesEnum = {
   INCIDENTS_NEW: "/incidents/new",
   INCIDENTS_VIEW: "/incidents/detail/:id",
   USEFUL_INFORMATION: "/useful-info",
-  USEFUL_INFORMATION_VIEW: "/useful-info/:_id",
+  USEFUL_INFORMATION_VIEW: "/useful-info/:id",
   ACTIVATION: "/auth/verify/:id",
 };
 export default RoutesEnum;

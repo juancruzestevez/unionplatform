@@ -76,9 +76,9 @@ const NewIncidentPage: React.FC = () => {
             rules={[{ required: true, message: "Dato requerido" }]}
           >
             <Select placeholder="Seleccione la situación">
-              <Select.Option value="male">Test</Select.Option>
-              <Select.Option value="female">Test 2</Select.Option>
-              <Select.Option value="other">Test 3</Select.Option>
+              <Select.Option value="test">Test</Select.Option>
+              <Select.Option value="test2">Test 2</Select.Option>
+              <Select.Option value="test3">Test 3</Select.Option>
             </Select>
           </Form.Item>
 

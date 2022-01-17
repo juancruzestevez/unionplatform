@@ -27,6 +27,7 @@ const useUsefulInfo = ({ limit = 0 }: useUsefulInfoParams) => {
   useEffect(() => {
     fetchUsefulInfo();
   }, []);
+
   return { isLoadingUsefulInfo, usefulInfo, fetchUsefulInfo };
 };
 export default useUsefulInfo;

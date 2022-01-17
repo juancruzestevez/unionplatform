@@ -1,5 +1,7 @@
 import { MongoId } from "./MongoId";
 
+export type IncidentStatus = "RECEIVED" | "IN_PROGRESS" | "RESOLVED";
+
 export type Incident = {
   _id: MongoId;
   createdAt: Date;
@@ -11,4 +13,17 @@ export type Incident = {
   description: string;
   reportedTo: string;
   image: string;
+  status: IncidentStatus;
+};
+
+export const IncidentStatusEnum = {
+  RECEIVED: "RECEIVED",
+  IN_PROGRESS: "IN_PROGRESS",
+  RESOLVED: "RESOLVED",
+};
+
+export const IncidentStatusLabel = {
+  [IncidentStatusEnum.RECEIVED]: "Recibido",
+  [IncidentStatusEnum.IN_PROGRESS]: "En Progreso",
+  [IncidentStatusEnum.RESOLVED]: "Resuelto",
 };
