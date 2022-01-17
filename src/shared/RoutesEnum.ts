@@ -1,6 +1,7 @@
 const RoutesEnum = {
   LOGIN: "/",
   SIGNUP: "/signup",
+  SIGNUP_EMAIL_SENT: "/signup-email-sent",
   FORGOT_PASSWORD: "/forgot-password",
   FORGOT_PASSWORD_EMAIL_SENT: "/forgot-password-email-sent",
   HOME: "/home",
@@ -12,5 +13,6 @@ const RoutesEnum = {
   INCIDENTS_VIEW: "/incidents/detail/:id",
   USEFUL_INFORMATION: "/useful-info",
   USEFUL_INFORMATION_VIEW: "/useful-info/:_id",
+  ACTIVATION: "/auth/verify/:id",
 };
 export default RoutesEnum;

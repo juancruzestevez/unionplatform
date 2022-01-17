@@ -1,6 +1,7 @@
 const ApiEndpoints = {
   SIGNUP: "auth/signup",
   LOGIN: "auth/login",
+  ACTIVATE: "auth/activation",
   INCIDENT_LIST: "incidents/list",
   INCIDENT_ADD: "incidents/add",
   INCIDENT_DETAIL: "incidents/detail",

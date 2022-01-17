@@ -11,6 +11,7 @@ interface PageContainerProps {
   showBackButton?: boolean;
   showHeader?: boolean;
   title?: string | null;
+  backRoute?: string | undefined;
 }
 
 const PageContainer: React.FC<PageContainerProps> = ({
@@ -18,6 +19,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
   showBackButton = false,
   showHeader = false,
   title = null,
+  backRoute = undefined,
 }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const history = useHistory();
@@ -26,7 +28,11 @@ const PageContainer: React.FC<PageContainerProps> = ({
     <>
       <Container isMenuVisible={isMenuVisible}>
         {showBackButton && history.length && (
-          <BackButton onClick={() => history.goBack()}>
+          <BackButton
+            onClick={() =>
+              backRoute ? history.push(backRoute) : history.goBack()
+            }
+          >
             <LeftOutlined style={{ fontSize: 28 }} />
           </BackButton>
         )}

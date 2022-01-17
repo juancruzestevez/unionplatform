@@ -17,6 +17,8 @@ import UsefulInformationPage from "./pages/UsefulInformationPage";
 import UsefulInfoDetailPage from "./pages/UsefulInfoDetailPage";
 import LoggedInRoute from "./components/LoggedInRoute";
 import ViewIncidentsPage from "./pages/ViewIncidentPage";
+import SignUpEmailSentPage from "./pages/SignUpEmailSentPage";
+import ActivationPage from "./pages/ActivationPage";
 
 function App() {
   return (
@@ -30,9 +32,15 @@ function App() {
       />
       <Route
         exact
+        path={RoutesEnum.SIGNUP_EMAIL_SENT}
+        component={SignUpEmailSentPage}
+      />
+      <Route
+        exact
         path={RoutesEnum.FORGOT_PASSWORD_EMAIL_SENT}
         component={ForgotPasswordEmailSentPage}
       />
+      <Route exact path={RoutesEnum.ACTIVATION} component={ActivationPage} />
       <LoggedInRoute exact path={RoutesEnum.HOME} component={HomePage} />
       <LoggedInRoute exact path={RoutesEnum.NEWS} component={NewsPage} />
       <LoggedInRoute

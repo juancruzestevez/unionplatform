@@ -30,16 +30,13 @@ const SignUpPage: React.FC = () => {
     try {
       setIsSubmitting(true);
 
-      console.log("formValues", formValues);
-
       const { token } = await FetchService.request(ApiEndpoints.SIGNUP, {
         body: JSON.stringify(formValues),
       });
       AuthService.saveAuthToken(token);
 
       closeLoading();
-      message.success("Su cuenta ha sido creada correctamente", 2);
-      history.push(RoutesEnum.LOGIN);
+      history.push(RoutesEnum.SIGNUP_EMAIL_SENT);
     } catch (e) {
       console.log(e);
     } finally {
