@@ -6,7 +6,7 @@ import RoutesEnum from "./shared/RoutesEnum";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ForgotPasswordEmailSentPage from "./pages/ForgotPasswordEmailSentPage";
 import "./styles/App.scss";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NewsPage from "./pages/NewsPage";
 import ProfilePage from "./pages/ProfilePage";
 import "antd/dist/antd.css";
@@ -23,57 +23,63 @@ import ActivationPage from "./pages/ActivationPage";
 function App() {
   return (
     <Router>
-      <Route exact path={RoutesEnum.LOGIN} component={LoginPage} />
-      <Route exact path={RoutesEnum.SIGNUP} component={SignUpPage} />
-      <Route
-        exact
-        path={RoutesEnum.FORGOT_PASSWORD}
-        component={ForgotPasswordPage}
-      />
-      <Route
-        exact
-        path={RoutesEnum.SIGNUP_EMAIL_SENT}
-        component={SignUpEmailSentPage}
-      />
-      <Route
-        exact
-        path={RoutesEnum.FORGOT_PASSWORD_EMAIL_SENT}
-        component={ForgotPasswordEmailSentPage}
-      />
-      <Route exact path={RoutesEnum.ACTIVATION} component={ActivationPage} />
-      <LoggedInRoute exact path={RoutesEnum.HOME} component={HomePage} />
-      <LoggedInRoute exact path={RoutesEnum.NEWS} component={NewsPage} />
-      <LoggedInRoute
-        exact
-        path={RoutesEnum.NEWS_ARTICLE}
-        component={NewsArticlePage}
-      />
-      <LoggedInRoute exact path={RoutesEnum.PROFILE} component={ProfilePage} />
-      <LoggedInRoute
-        exact
-        path={RoutesEnum.INCIDENTS}
-        component={IncidentsPage}
-      />
-      <LoggedInRoute
-        exact
-        path={RoutesEnum.INCIDENTS_NEW}
-        component={NewIncidentPage}
-      />
-      <LoggedInRoute
-        exact
-        path={RoutesEnum.INCIDENTS_VIEW}
-        component={ViewIncidentsPage}
-      />
-      <LoggedInRoute
-        exact
-        path={RoutesEnum.USEFUL_INFORMATION}
-        component={UsefulInformationPage}
-      />
-      <LoggedInRoute
-        exact
-        path={RoutesEnum.USEFUL_INFORMATION_VIEW}
-        component={UsefulInfoDetailPage}
-      />
+      <Switch>
+        <Route exact path={RoutesEnum.LOGIN} component={LoginPage} />
+        <Route exact path={RoutesEnum.SIGNUP} component={SignUpPage} />
+        <Route
+          exact
+          path={RoutesEnum.FORGOT_PASSWORD}
+          component={ForgotPasswordPage}
+        />
+        <Route
+          exact
+          path={RoutesEnum.SIGNUP_EMAIL_SENT}
+          component={SignUpEmailSentPage}
+        />
+        <Route
+          exact
+          path={RoutesEnum.FORGOT_PASSWORD_EMAIL_SENT}
+          component={ForgotPasswordEmailSentPage}
+        />
+        <Route exact path={RoutesEnum.ACTIVATION} component={ActivationPage} />
+        <LoggedInRoute exact path={RoutesEnum.HOME} component={HomePage} />
+        <LoggedInRoute exact path={RoutesEnum.NEWS} component={NewsPage} />
+        <LoggedInRoute
+          exact
+          path={RoutesEnum.NEWS_ARTICLE}
+          component={NewsArticlePage}
+        />
+        <LoggedInRoute
+          exact
+          path={RoutesEnum.PROFILE}
+          component={ProfilePage}
+        />
+        <LoggedInRoute
+          exact
+          path={RoutesEnum.INCIDENTS}
+          component={IncidentsPage}
+        />
+        <LoggedInRoute
+          exact
+          path={RoutesEnum.INCIDENTS_NEW}
+          component={NewIncidentPage}
+        />
+        <LoggedInRoute
+          exact
+          path={RoutesEnum.INCIDENTS_VIEW}
+          component={ViewIncidentsPage}
+        />
+        <LoggedInRoute
+          exact
+          path={RoutesEnum.USEFUL_INFORMATION}
+          component={UsefulInformationPage}
+        />
+        <LoggedInRoute
+          exact
+          path={RoutesEnum.USEFUL_INFORMATION_VIEW}
+          component={UsefulInfoDetailPage}
+        />
+      </Switch>
     </Router>
   );
 }
