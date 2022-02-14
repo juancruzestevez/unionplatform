@@ -4,6 +4,7 @@ import moment from "moment";
 import { Incident } from "../shared/Incident";
 import RoutesEnum from "../shared/RoutesEnum";
 import Button from "./Button";
+import { IncidentTypeLabelEnum } from "../shared/IncidentsTypes";
 
 interface IncidentPreviewProps {
   incident: Incident;
@@ -26,11 +27,11 @@ const IncidentPreview: React.FC<IncidentPreviewProps> = ({ incident }) => {
     <Container>
       <Link href={incidentRoute} onClick={onClick}>
         <Info>
-          <Title>Incidente asd</Title>
+          <Title>Inc. {IncidentTypeLabelEnum[incident.situation]}</Title>
           <Description>
             {moment(incident.createdAt).format("DD/MM/YYYY")}
             <br />
-            {incident.situation}
+            {/* {incident.situation} */}
           </Description>
         </Info>
         <Actions>

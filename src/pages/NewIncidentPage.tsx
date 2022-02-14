@@ -17,6 +17,10 @@ import FetchService from "../shared/FetchService";
 import ApiEndpoints from "../shared/ApiEndpoints";
 import { useHistory } from "react-router-dom";
 import RoutesEnum from "../shared/RoutesEnum";
+import {
+  IncidentTypeEnum,
+  IncidentTypeLabelEnum,
+} from "../shared/IncidentsTypes";
 
 interface FormValues {
   situation: string;
@@ -76,9 +80,11 @@ const NewIncidentPage: React.FC = () => {
             rules={[{ required: true, message: "Dato requerido" }]}
           >
             <Select placeholder="Seleccione la situación">
-              <Select.Option value="test">Test</Select.Option>
-              <Select.Option value="test2">Test 2</Select.Option>
-              <Select.Option value="test3">Test 3</Select.Option>
+              {Object.values(IncidentTypeEnum).map((type) => (
+                <Select.Option key={type} value={type}>
+                  {IncidentTypeLabelEnum[type]}
+                </Select.Option>
+              ))}
             </Select>
           </Form.Item>
 
