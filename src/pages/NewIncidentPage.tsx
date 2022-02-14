@@ -28,6 +28,7 @@ interface FormValues {
   place: string;
   description: string;
   image: string;
+  reportedTo: string;
 }
 
 const NewIncidentPage: React.FC = () => {
@@ -46,7 +47,8 @@ const NewIncidentPage: React.FC = () => {
     const closeLoading = message.loading("Enviando incidente...");
     try {
       setIsSubmitting(true);
-      const { description, image, place, role, situation } = formValues;
+      const { description, image, place, role, situation, reportedTo } =
+        formValues;
       await FetchService.request(ApiEndpoints.INCIDENT_ADD, {
         body: JSON.stringify({
           description,
@@ -54,11 +56,12 @@ const NewIncidentPage: React.FC = () => {
           place,
           role,
           situation,
+          reportedTo,
         }),
       });
       setIsSubmitting(false);
       closeLoading();
-      message.success("Incidente enviado!", 2000);
+      message.success("Incidente enviado!", 2);
       history.push(RoutesEnum.INCIDENTS);
     } catch (e) {
       console.log(e);

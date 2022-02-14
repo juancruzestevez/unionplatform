@@ -1,4 +1,5 @@
 import { Spin } from "antd";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import ContentContainer from "../components/ContentContainer";
@@ -6,7 +7,8 @@ import PageContainer from "../components/PageContainer";
 import PageTitle from "../components/PageTitle";
 import ApiEndpoints from "../shared/ApiEndpoints";
 import FetchService from "../shared/FetchService";
-import { Incident } from "../shared/Incident";
+import { Incident, IncidentStatusLabel } from "../shared/Incident";
+import { IncidentTypeLabelEnum } from "../shared/IncidentsTypes";
 
 interface ViewIncidentsPageRouteParams {
   id: string;
@@ -41,8 +43,16 @@ const ViewIncidentsPage = () => {
         {!isLoading ? (
           <div>
             <p>
+              Fecha de carga:
+              <br /> {moment(incident.createdAt).format("DD/MM/YYYY")}
+            </p>
+            <p>
+              Estado:
+              <br /> {IncidentStatusLabel[incident.status]}
+            </p>
+            <p>
               Situación:
-              <br /> {incident.situation}
+              <br /> {IncidentTypeLabelEnum[incident.situation]}
             </p>
             <p>
               Puesto:
@@ -58,7 +68,7 @@ const ViewIncidentsPage = () => {
             </p>
             <p>
               Reportado a:
-              <br /> {incident.reportedTo}
+              <br /> {incident.reportedTo ? incident.reportedTo : "-"}
             </p>
           </div>
         ) : (
