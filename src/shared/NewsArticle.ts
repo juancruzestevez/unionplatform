@@ -5,6 +5,10 @@ export type NewsArticle = {
   title: string;
   description: string;
   content: string;
-  thumbnail: string;
+  thumbnail: {
+    fileName: string;
+    fileKey: string;
+    url: string;
+  };
   createdAt: Date;
 };

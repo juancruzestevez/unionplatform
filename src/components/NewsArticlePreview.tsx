@@ -24,7 +24,7 @@ const NewsArticlePreview: React.FC<NewsArticlePreviewProps> = ({
   return (
     <Container>
       <Link featured={featured} href={articleRoute} onClick={onClick}>
-        <Image featured={featured} src={newsArticle.thumbnail}></Image>
+        <Image featured={featured} src={newsArticle.thumbnail.url}></Image>
         <Info featured={featured}>
           <Title>{newsArticle.title}</Title>
           <Description>{newsArticle.description}</Description>

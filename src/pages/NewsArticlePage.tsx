@@ -19,7 +19,7 @@ const NewsArticlePage = () => {
       <ContentContainer>
         {!isLoading ? (
           <>
-            <Image src={article.thumbnail}></Image>
+            <Image src={article.thumbnail.url}></Image>
             <Title>{article.title}</Title>
             <div dangerouslySetInnerHTML={{ __html: article.content }}></div>
           </>
