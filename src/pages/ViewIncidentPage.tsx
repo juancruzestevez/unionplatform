@@ -70,6 +70,26 @@ const ViewIncidentsPage = () => {
               Reportado a:
               <br /> {incident.reportedTo ? incident.reportedTo : "-"}
             </p>
+
+            {incident.images && (
+              <p>
+                Archivos adjuntos:
+                <br />
+                {incident.images.map(({ fileName, url }) => (
+                  <>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                      key={fileName}
+                    >
+                      {fileName}
+                    </a>
+                    <br />
+                  </>
+                ))}
+              </p>
+            )}
           </div>
         ) : (
           <Spin />

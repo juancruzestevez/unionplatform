@@ -12,7 +12,10 @@ export type Incident = {
   place: string;
   description: string;
   reportedTo: string;
-  image: string;
+  images: {
+    url: string;
+    fileName: string;
+  }[];
   status: IncidentStatus;
 };
 

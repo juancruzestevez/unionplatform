@@ -4,6 +4,7 @@ import {
   Input,
   message,
   Select,
+  Spin,
   Upload,
 } from "antd";
 import TextArea from "antd/lib/input/TextArea";
@@ -31,9 +32,19 @@ interface FormValues {
   reportedTo: string;
 }
 
+interface FileListItem {
+  uid: string;
+  name: string;
+  status: "uploading" | "done";
+  url: string;
+  fileKey: string;
+}
+
 const NewIncidentPage: React.FC = () => {
   const history = useHistory();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [fileList, setFileList] = useState<FileListItem[]>([]);
 
   const normFile = (e: any) => {
     console.log("Upload event:", e);
@@ -49,10 +60,14 @@ const NewIncidentPage: React.FC = () => {
       setIsSubmitting(true);
       const { description, image, place, role, situation, reportedTo } =
         formValues;
+
       await FetchService.request(ApiEndpoints.INCIDENT_ADD, {
         body: JSON.stringify({
           description,
-          image: "",
+          images: fileList.map((file) => ({
+            fileName: file.name,
+            fileKey: file.fileKey,
+          })),
           place,
           role,
           situation,
@@ -65,12 +80,77 @@ const NewIncidentPage: React.FC = () => {
       history.push(RoutesEnum.INCIDENTS);
     } catch (e) {
       console.log(e);
-      message.error(e.message || "Error al ingresar");
+      message.error(e.message || "Error al enviar el incidente");
     } finally {
       setIsSubmitting(false);
       closeLoading();
     }
   };
+
+  const getImageToken = async (fileName) => {
+    const response = await FetchService.request(
+      ApiEndpoints.GET_IMAGE_UPLOAD_TOKEN,
+      {
+        body: JSON.stringify({
+          fileName,
+        }),
+      }
+    );
+    return response;
+  };
+
+  const onUpload = async (file) => {
+    const fileName: string = file.name;
+
+    const newFile: FileListItem = {
+      uid: fileName,
+      name: fileName,
+      status: "uploading",
+      url: "",
+      fileKey: "",
+    };
+
+    setFileList([...fileList, newFile]);
+
+    console.log("file", file);
+    const { url, fields } = await getImageToken(fileName);
+    const formData = new FormData();
+
+    Object.entries({ ...fields, file }).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    const upload = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (upload.ok) {
+      console.log("Uploaded successfully!");
+      const fileKey = fields.key;
+
+      newFile.status = "done";
+      newFile.url = `${url}${fileKey}`;
+      newFile.fileKey = fileKey;
+
+      setFileList([...fileList, newFile]);
+    } else {
+      console.error("Upload failed.");
+      message.error(
+        "Hubo un problema con la carga del archivo. Intente nuevamente. "
+      );
+      setFileList([...fileList]);
+    }
+
+    return false;
+  };
+
+  const hasUploadingFileListItem = !!fileList.find(
+    (fileListItem) => fileListItem.status === "uploading"
+  );
+
+  console.log("fileList", fileList);
+  console.log("hasUploadingFileListItem", hasUploadingFileListItem);
 
   return (
     <PageContainer showHeader>
@@ -140,12 +220,22 @@ const NewIncidentPage: React.FC = () => {
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
-            <Upload name="logo" action="/upload.do" listType="picture">
+            <Upload
+              name="images"
+              listType="picture"
+              fileList={fileList}
+              beforeUpload={onUpload}
+            >
               <AntButton icon={<UploadOutlined />}>Elegir imagen</AntButton>
             </Upload>
+            {hasUploadingFileListItem && <span />}
           </Form.Item>
 
-          <Button type="primary" htmlType="submit" disabled={isSubmitting}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={isSubmitting || hasUploadingFileListItem}
+          >
             Enviar
           </Button>
         </Form>

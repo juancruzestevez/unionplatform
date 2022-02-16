@@ -9,5 +9,6 @@ const ApiEndpoints = {
   NEWS_DETAIL: "news/detail",
   USEFUL_INFO_LIST: "useful-info/list",
   USEFUL_INFO_DETAIL: "useful-info/detail",
+  GET_IMAGE_UPLOAD_TOKEN: "incidents/getImageUploadToken",
 };
 export default ApiEndpoints;

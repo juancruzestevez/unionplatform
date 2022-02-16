@@ -34,6 +34,7 @@ const Button: React.FC<ButtonProps> = ({
 
 interface StyledButtonProps {
   light: boolean;
+  disabled: boolean;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -42,7 +43,11 @@ const StyledButton = styled.button<StyledButtonProps>`
   font-family: "Roboto";
   font-weight: 700;
   color: ${({ light }) => (light ? "#000" : "#fff")};
-  background-color: ${({ light }) => (light ? "#fff" : "#6d6ae7")};
+  background-color: ${({ light, disabled }) => {
+    if (disabled) return "#ccc";
+    if (light) return "#fff";
+    return "#6d6ae7";
+  }};
   border: 1px solid #e9e9e9;
   border-radius: 13px;
   padding: 14px 15px 12px;
