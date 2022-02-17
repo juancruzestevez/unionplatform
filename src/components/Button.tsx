@@ -7,6 +7,7 @@ interface ButtonProps {
   submit?: boolean;
   onClick?: () => void;
   style?: React.CSSProperties;
+  loading?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   light = false,
   submit = false,
+  loading = false,
   onClick = () => {},
   style = {},
   ...props
@@ -25,6 +27,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       style={style}
       type={submit ? "submit" : "button"}
+      loading={loading}
       {...props}
     >
       {children}
@@ -35,6 +38,7 @@ const Button: React.FC<ButtonProps> = ({
 interface StyledButtonProps {
   light: boolean;
   disabled: boolean;
+  loading: boolean;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
