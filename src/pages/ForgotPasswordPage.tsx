@@ -7,6 +7,8 @@ import SignUpContainer from "../components/SignUpContainer";
 import Button from "../components/Button";
 import { useHistory } from "react-router-dom";
 import RoutesEnum from "../shared/RoutesEnum";
+import FetchService from "../shared/FetchService";
+import ApiEndpoints from "../shared/ApiEndpoints";
 
 const ForgotPasswordPage: React.FC = () => {
   const history = useHistory();
@@ -16,7 +18,13 @@ const ForgotPasswordPage: React.FC = () => {
     const closeLoading = message.loading("Procesando...");
     try {
       setIsSubmitting(true);
-      await new Promise((r) => setTimeout(r, 2000));
+
+      await FetchService.request(ApiEndpoints.USERS_FORGOT_PASSWORD, {
+        body: JSON.stringify({
+          email,
+        }),
+      });
+
       history.push(RoutesEnum.FORGOT_PASSWORD_EMAIL_SENT);
     } catch (e) {
       console.log(e);
@@ -39,7 +47,9 @@ const ForgotPasswordPage: React.FC = () => {
               <Input placeholder="Email" type="email" />
             </Form.Item>
 
-            <Button submit>Resetear Constraseña &gt;</Button>
+            <Button submit loading={isSubmitting}>
+              Resetear Constraseña &gt;
+            </Button>
           </Form>
         </ContainerDiv>
       </SignUpContainer>

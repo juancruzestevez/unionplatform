@@ -14,5 +14,6 @@ const RoutesEnum = {
   USEFUL_INFORMATION: "/useful-info",
   USEFUL_INFORMATION_VIEW: "/useful-info/:id",
   ACTIVATION: "/auth/verify/:id",
+  RESET: "/auth/reset/:id",
 };
 export default RoutesEnum;
