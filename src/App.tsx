@@ -6,7 +6,7 @@ import RoutesEnum from "./shared/RoutesEnum";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ForgotPasswordEmailSentPage from "./pages/ForgotPasswordEmailSentPage";
 import "./styles/App.scss";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import NewsPage from "./pages/NewsPage";
 import ProfilePage from "./pages/ProfilePage";
 import "antd/dist/antd.css";
