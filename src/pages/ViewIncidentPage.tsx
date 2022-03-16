@@ -43,37 +43,37 @@ const ViewIncidentsPage = () => {
         {!isLoading ? (
           <div>
             <p>
-              Fecha de carga:
+              <strong>Fecha de carga:</strong>
               <br /> {moment(incident.createdAt).format("DD/MM/YYYY")}
             </p>
             <p>
-              Estado:
+              <strong>Estado:</strong>
               <br /> {IncidentStatusLabel[incident.status]}
             </p>
             <p>
-              Situación:
+              <strong>Situación:</strong>
               <br /> {IncidentTypeLabelEnum[incident.situation]}
             </p>
             <p>
-              Puesto:
+              <strong>Puesto:</strong>
               <br /> {incident.role}
             </p>
             <p>
-              Lugar:
+              <strong>Lugar:</strong>
               <br /> {incident.place}
             </p>
             <p>
-              Descripción:
+              <strong>Descripción:</strong>
               <br /> {incident.description}
             </p>
             <p>
-              Reportado a:
+              <strong>Reportado a:</strong>
               <br /> {incident.reportedTo ? incident.reportedTo : "-"}
             </p>
 
             {incident.images && (
               <p>
-                Archivos adjuntos:
+                <strong>Archivos adjuntos:</strong>
                 <br />
                 {incident.images.map(({ fileName, url }) => (
                   <>
